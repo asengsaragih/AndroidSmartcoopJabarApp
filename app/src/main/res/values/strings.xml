@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Smartcoop Jabar</string>
+    <string name="has_session">HasSession</string>
+    <string name="base_url_login">http://diskumkm.koperasijabar.com/mobile</string>
+    <string name="base_url_home">https://demo.koperasijabar.com/</string>
+    <string name="base_url_logout">https://demo.koperasijabar.com/logout/</string>
+</resources>
