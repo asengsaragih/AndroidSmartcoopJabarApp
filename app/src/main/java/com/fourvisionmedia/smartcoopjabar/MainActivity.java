@@ -6,9 +6,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.webkit.WebSettings;
 import android.widget.Toast;
 
 import im.delight.android.webview.AdvancedWebView;
@@ -46,6 +48,12 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
         //content allowed
         mMainWebView.setMixedContentAllowed(false);
         mMainWebView.getSettings().setJavaScriptEnabled(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mMainWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        } else {
+            mMainWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        }
 
         mMainWebView.loadUrl("http://diskumkm.koperasijabar.com/mobile");
 
@@ -101,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements AdvancedWebView.L
     public void onPageFinished(String url) {
         Log.d(TAG, "onPageFinished: " + url);
         if (url.contains(getString(R.string.base_url_logout))) {
-            recreate();
+            mMainWebView.loadUrl("http://diskumkm.koperasijabar.com/mobile");
         }
     }
 
